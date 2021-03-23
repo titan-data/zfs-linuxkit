@@ -71,10 +71,10 @@ Optionally, push the images you build to a registry.
 
 ## Testing the Docker Image
 
-This repository also contains LinuxKit configuration files for building a LinuxKit image, that is bootable as a VM and can load the zfs driver.
+This repository also contains LinuxKit configuration file templates for building LinuxKit images, which are bootable as a VM and can load the zfs driver.
 
-The linuxkit yml files included in this repository are templates. Run `test.sh` to generate the correct linuxkit yml files in `cache/`, which you can then run
-to test the docker images.
+The linuxkit yml files included in this repository are templates. When you run `build.sh`, it also generates the correct linuxkit yml files in `cache/`,
+as well as the LinuxKit VM images, which you can then run to test the docker images.
 
 The generated images have several options for loading the modules in the VM:
 
@@ -83,7 +83,20 @@ The generated images have several options for loading the modules in the VM:
 
 Whichever path you choose, when the module is loaded, run `lsmod` to check for it.
 
-The `docker.yml` version preloads the saved image as a local tar file.
+The `*docker.yml` version preloads the saved image as a local tar file.
+
+When `build.sh` is complete, it will tell you which command-line to run to launch the image. Specifically, it will be:
+
+```
+linuxkit run qemu -mem 2048 cache/<image>      # for Linux
+# or
+linuxkit run hyperkit -mem 2048 cache/<image>  # for macOS
+```
+
+The `<image>` above is the name of the image, which is derived from the bsae kernel docker image used. For example, if the base kernel
+was `linuxkit/kernel:5.4.39`, then the linuxkit run command would be `linuxkit run -mem 2048 cache/linuxkit-boot-linuxkit-kernel-5.4.39` or
+`linuxkit run -mem 2048 cache/linuxkit-docker-linuxkit-kernel-5.4.39`.
+
 If you are using the `docker run` option, you need to get from the getty shell to a docker cli.
 You can get to it via `ctr -n services.linuxkit t exec --tty --exec-id=999 docker sh`, which will give you a shell which has `docker` commands available
 
