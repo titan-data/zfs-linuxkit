@@ -104,6 +104,35 @@ You can get to it via `ctr -n services.linuxkit t exec --tty --exec-id=999 docke
 1. run the loader image: `docker run --rm --privileged <image>`
 1. check that you have the module installed: `lsmod`
 
+## Loading into Docker Desktop
+
+To load into an active running Docker Desktop, you just need to run the image. In all cases, ensure you run it with `docker run --privileged --rm <image>`.
+
+### Local
+
+To run it where you built it:
+
+1. Determine the proper kernel image version and create an image for it; see above
+1. To load it, run `docker run --privileged --rm <image>`, e.g. `docker run --privileged --rm openzfs:install-docker-for-desktop-kernel-4.19.121-77626c0840805a2fe3f986674e9e6c5356a33f0c`
+
+### Remote
+
+If you want to run it on a different Docker Desktop than the one on which you built it, you need to distribute it, either via registry or sideload.
+
+#### Registry
+
+1. Tag the image with the name to which you will push it to the registry, e.g. `docker tag openzfs:install-docker-for-desktop-kernel-4.19.121-77626c0840805a2fe3f986674e9e6c5356a33f0c myname/install-zfs:docker-desktop-3.2.2`
+1. Push the image, e.g. `docker push myname/install-zfs:docker-desktop-3.2.2`
+1. On the remote node, run the image, e.g. `docker run --privileged --rm myname/install-zfs:docker-desktop-3.2.2`
+
+#### Sideload
+
+The build process already saved the image to cache as a tar file.
+
+1. Copy the tar file to the remote node, e.g via `scp`
+1. Load the tar file, e.g. `docker load < imagefile.tar`
+1. Run the image, e.g. `docker run --privileged --rm openzfs:install-docker-for-desktop-kernel-4.19.121-77626c0840805a2fe3f986674e9e6c5356a33f0c`
+
 ## useful
 
 Reminder: if you need to enter the PID 1 namespace and working dir use: `nsenter -t 1 -m -u -n -i sh`
