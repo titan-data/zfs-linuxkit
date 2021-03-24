@@ -45,7 +45,7 @@ while read -r line; do
   outlines="${outlines}\n${KERNEL_IMAGE} ready for test, run:"
   VERSION_TAG=$(echo $KERNEL_IMAGE | tr '/' '-' | tr ':' '-')
   echo "Building openzfs $ZFS_VERSION for $KERNEL_IMAGE with alpine $ALPINE_VERSION"
-  docker build --build-arg ZFS_VERSION=$ZFS_VERSION --build-arg KERNEL_IMAGE=$KERNEL_IMAGE --build-arg ALPINE_VERSION=$ALPINE_VERSION  -t openzfs:install-${VERSION_TAG} --load .
+  docker buildx build --build-arg ZFS_VERSION=$ZFS_VERSION --build-arg KERNEL_IMAGE=$KERNEL_IMAGE --build-arg ALPINE_VERSION=$ALPINE_VERSION  -t openzfs:install-${VERSION_TAG} --load .
   echo "Built image, saving"
   docker save openzfs:install-${VERSION_TAG} > cache/zfs-${VERSION_TAG}.tar
   echo "Creating linuxkit images for $KERNEL_IMAGE"
