@@ -21,7 +21,7 @@ This gives us two options:
 Either way, we will need the specific kernel image. Docker does not publish a mapping anywhere of Desktop version -> kernel version. The only way to get the right version is:
 
 1. Launch docker desktop of the desired version
-1. Run `docker run --rm -it --privileged --pid=host alpine:latest nsenter -t 1 -m -u -n -i awk '/image: docker\/for-desktop-kernel:/ {print $2}' /etc/linuxkit.yml`
+1. Run `docker run --rm -it --privileged --pid=host alpine:latest nsenter -t 1 -m -u -n -i awk '{ if ($1 == "kernel:") { inKernel = 1; next } if (inKernel == 1 && $1 == "image:") { print $2; inKernel = 0; quit } }' /etc/linuxkit.yml`
 
 There is no way to get the Docker Desktop version via the `docker` CLI, so you just have to know it.
 
