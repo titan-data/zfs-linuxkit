@@ -53,7 +53,7 @@ while read -r line; do
     outfile=$(echo $i | sed 's/.tmpl\.yml//g')
     outfile=cache/${outfile}-${VERSION_TAG}
     outfilesize=${#outfile}
-    if [ $outfilesize -gt 90 ]; then
+    if [ $outfilesize -gt 80 ]; then
       if echo "$outfile" | grep -E '([a-f0-9]){40}$'; then
         outfile=$(echo $outfile | sed 's/.\{33\}$//')
       else
