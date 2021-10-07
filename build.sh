@@ -3,6 +3,7 @@ set -e
 
 # which images do we want to build?
 target_image="$1"
+ver_tag=$2
 
 [ -z "$target_image" ] && target_image=all
 
@@ -22,6 +23,14 @@ darwin)
 *)
   echo "Unknown platform ${platform}"
   exit 1
+esac
+
+# determine our arch
+arch=$(uname -m)
+arch_tag=""
+case ${arch} in
+  x86_64) arch_tag="amd64" ;;
+  arm64) arch_tag="arm64" ;;
 esac
 
 outlines=""
@@ -71,6 +80,9 @@ while read -r line; do
     linuxkit build -dir cache --docker ${outfile}
     runfile=${outfile%%.yml}
     outlines="${outlines}\n  linuxkit run ${hypervisor} -mem 2048 ${runfile}"
+
+    #tag final image
+    docker tag openzfs:install-${VERSION_TAG} titandata/docker-desktop-zfs-kernel:${ver_tag}-${arch_tag}
   done
 done < versions
 
