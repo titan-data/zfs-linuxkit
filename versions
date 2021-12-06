@@ -5,3 +5,4 @@ linuxkit/kernel:4.19.121 alpine:e2391e0b164c57db9f6c4ae110ee84f766edc430 0.8.2
 docker/for-desktop-kernel:4.19.121-77626c0840805a2fe3f986674e9e6c5356a33f0c alpine:e2391e0b164c57db9f6c4ae110ee84f766edc430 0.8.2
 docker/for-desktop-kernel:5.10.25-6594e668feec68f102a58011bb42bd5dc07a7a9b alpine:e2391e0b164c57db9f6c4ae110ee84f766edc430 2.0.4
 docker/for-desktop-kernel:5.10.47-0b705d955f5e283f62583c4e227d64a7924c138f kernel:5.10.47-builder 2.0.4
+docker.io/docker/for-desktop-kernel:5.10.76-505289bcc85427a04d8d797e06cbca92eee291f4 kernel:5.10.76-builder 2.0.4
