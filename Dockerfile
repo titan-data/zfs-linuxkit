@@ -34,7 +34,7 @@ RUN tar xf kernel-dev.tar
 RUN ls -1d /usr/src/linux-headers-*-linuxkit | sed 's#/usr/src/linux-headers-##g' > /etc/kernel-version
 
 # now download and build openzfs
-RUN git clone https://github.com/zfsonlinux/zfs /src/zfs
+RUN git clone https://github.com/openzfs/zfs /src/zfs
 WORKDIR /src/zfs
 RUN git checkout zfs-${ZFS_VERSION}
 RUN sh ./autogen.sh
