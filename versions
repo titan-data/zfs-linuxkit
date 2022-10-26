@@ -8,3 +8,4 @@ docker/for-desktop-kernel:5.10.47-0b705d955f5e283f62583c4e227d64a7924c138f kerne
 docker.io/docker/for-desktop-kernel:5.10.76-505289bcc85427a04d8d797e06cbca92eee291f4 kernel:5.10.76-builder 2.0.6
 docker.io/docker/for-desktop-kernel:5.10.104-ad41e9402fa6e51d2635fb92e4cb6b90107caa25 alpine:2be490394653b7967c250e86fd42cef88de428ba 2.0.6
 docker.io/docker/for-desktop-kernel:5.10.124-3fe5181fc8c0cd017929f81163be77d662bece99 alpine:2be490394653b7967c250e86fd42cef88de428ba 2.1.5
+docker.io/docker/for-desktop-kernel:5.15.49-13422a825f833d125942948cf8a8688cef721ead alpine:2be490394653b7967c250e86fd42cef88de428ba 2.1.5
