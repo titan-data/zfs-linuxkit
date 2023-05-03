@@ -64,7 +64,7 @@ The build script also creates the `cache/` directory and saves the image to `cac
 If you want to build the image directly, you can. You must get the build args correct for it to work:
 
 ```
-docker build -t openzfs:install-<version> --build-arg ZFS_VERSION=<zfs_version> --build-arg LKT_VERSION=<linuxkit_kernel_version> --build-arg ALPINE_VERSION=<appropriate_alpinne_version> .
+docker build -t openzfs:install-<version> --build-arg ZFS_VERSION=<zfs_version> --build-arg KERNEL_IMAGE=<linuxkit_docker_kernel_image> --build-arg ALPINE_VERSION=<appropriate_alpinne_version> .
 ```
 
 Optionally, push the images you build to a registry.
